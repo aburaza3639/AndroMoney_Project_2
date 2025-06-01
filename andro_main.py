@@ -16,7 +16,7 @@ try:
             end_date = args[2]
 except:
     start_date = 20240301
-    end_date = 20240331
+    end_date = 20240330
 
 def func(start_date, end_date):
 

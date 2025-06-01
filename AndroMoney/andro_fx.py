@@ -2,8 +2,6 @@
 import yfinance as yfin
 
 
-
-
 def get_exchange_rate(pair, start, end):
     selected = f'{pair}=X'
     df3 = yfin.download(selected, start, end)
@@ -13,8 +11,8 @@ def get_exchange_rate(pair, start, end):
 
 def return_fx(start, end):
     pairs = ['SGDJPY', 'SGDHKD', 'SGDTHB']
-    dat_JPY = get_exchange_rate(pairs[0], start, end)
-    dat_HKD = get_exchange_rate(pairs[1], start, end)
-    dat_THB = get_exchange_rate(pairs[2], start, end)
-    FX = (dat_JPY.iloc[0,3], dat_HKD.iloc[0,3],dat_THB.iloc[0,3])
-    return FX
+    dat_jpy = get_exchange_rate(pairs[0], start, end)
+    dat_hkd = get_exchange_rate(pairs[1], start, end)
+    dat_thb = get_exchange_rate(pairs[2], start, end)
+    fx = (dat_jpy.iloc[0,3], dat_hkd.iloc[0,3],dat_thb.iloc[0,3])
+    return fx
