@@ -50,8 +50,21 @@ class AndroDataMoney(AndroData):
         edd = self.end_date[:4] + '-' + self.end_date[4:6] + '-' + self.end_date[6:]
         pivot_andromoney = self.andro_pivot_get()
         fx = AndroMoney.andro_fx.return_fx(std, edd)
-        pivot_andromoney['sum'] = pivot_andromoney['HKD'] / fx[1] + pivot_andromoney['JPY'] / fx[0] + pivot_andromoney[
-            'SGD']
-        pivot_andromoney = pivot_andromoney.round(2)
-        print(pivot_andromoney)
-        return pivot_andromoney
+
+        if not 'JPY' in pivot_andromoney.columns:
+            pivot_andromoney['sum'] = pivot_andromoney['HKD'] / fx[1] + pivot_andromoney['SGD']
+            pivot_andromoney = pivot_andromoney.round(2)
+            print(pivot_andromoney)
+            return pivot_andromoney
+
+        elif not 'HKD' in pivot_andromoney.columns:
+            pivot_andromoney['sum'] = pivot_andromoney['JPY'] / fx[0] + pivot_andromoney['SGD']
+            pivot_andromoney = pivot_andromoney.round(2)
+            print(pivot_andromoney)
+            return pivot_andromoney
+
+        else:
+            pivot_andromoney['sum'] = pivot_andromoney['HKD'] / fx[1] + pivot_andromoney['JPY'] / fx[0] + pivot_andromoney['SGD']
+            pivot_andromoney = pivot_andromoney.round(2)
+            print(pivot_andromoney)
+            return pivot_andromoney

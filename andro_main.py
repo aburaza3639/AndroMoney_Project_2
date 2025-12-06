@@ -15,8 +15,8 @@ try:
             start_date = args[1]
             end_date = args[2]
 except:
-    start_date = 20240301
-    end_date = 20240330
+    start_date = "20251101"
+    end_date = "20251130"
 
 def func(start_date, end_date):
 
